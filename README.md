@@ -14,11 +14,8 @@ O protótipo usa somente dados sintéticos. Não representa a operação nem os 
 
 | Nome completo | RM |
 |---|---|
-| [Preencher nome] | [Preencher RM] |
-| [Preencher nome] | [Preencher RM] |
-| [Preencher nome] | [Preencher RM] |
-
-Remova as linhas que não forem necessárias ao tamanho do grupo.
+| Pedro Lisboa | 565722 |
+| Bruna Marques | 565648 |
 
 ## Demonstração visual
 
@@ -26,13 +23,13 @@ Salve uma captura atualizada de cada tela em `assets/screenshots/`, usando os no
 
 | Tela | Captura |
 |---|---|
-| Visão geral | `assets/screenshots/01-visao-geral.png` |
-| Painel de serviços | `assets/screenshots/02-servicos.png` |
-| Impacto social | `assets/screenshots/03-impacto-social.png` |
-| Alertas preditivos | `assets/screenshots/04-alertas.png` |
-| Detalhe do alerta | `assets/screenshots/05-detalhe-alerta.png` |
-| Ocorrências | `assets/screenshots/06-ocorrencias.png` |
-| Formulário de ocorrência | `assets/screenshots/07-formulario.png` |
+| Visão geral | ![Visão geral](assets/screenshots/01-visao-geral.png) |
+| Painel de serviços | ![Painel de serviços](assets/screenshots/02-servicos.png) |
+| Impacto social | ![Impacto social](assets/screenshots/03-impacto-social.png) |
+| Alertas preditivos | ![Alertas preditivos](assets/screenshots/04-alertas.png) |
+| Detalhe do alerta | ![Detalhe do alerta](assets/screenshots/05-detalhe-alerta.png) |
+| Ocorrências | ![Ocorrências](assets/screenshots/06-ocorrencias.png) |
+| Formulário de ocorrência | ![Formulário de ocorrência](assets/screenshots/07-formulario.png) |
 
 ## Funcionalidades
 
