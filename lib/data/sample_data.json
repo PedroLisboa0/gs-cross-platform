@@ -1,0 +1,66 @@
+{
+  "territory": "São Paulo",
+  "updatedAt": "2026-11-18T08:00:00-03:00",
+  "services": [
+    {
+      "id": "saude",
+      "name": "Saúde",
+      "category": "Atendimento em unidades",
+      "demand": 3200,
+      "previousDemand": 2860,
+      "capacity": 3500,
+      "averageWaitHours": 28,
+      "resolutionRate": 0.72,
+      "neighborhoods": [
+        {"name": "Sé", "demand": 640, "capacity": 700},
+        {"name": "Santo Amaro", "demand": 520, "capacity": 610},
+        {"name": "Itaquera", "demand": 710, "capacity": 760}
+      ]
+    },
+    {
+      "id": "zeladoria",
+      "name": "Zeladoria",
+      "category": "Manutenção urbana",
+      "demand": 1800,
+      "previousDemand": 2100,
+      "capacity": 2200,
+      "averageWaitHours": 12,
+      "resolutionRate": 0.84,
+      "neighborhoods": [
+        {"name": "Sé", "demand": 380, "capacity": 480},
+        {"name": "Santo Amaro", "demand": 410, "capacity": 500},
+        {"name": "Itaquera", "demand": 520, "capacity": 560}
+      ]
+    },
+    {
+      "id": "mobilidade",
+      "name": "Mobilidade",
+      "category": "Transporte e circulação",
+      "demand": 4100,
+      "previousDemand": 3600,
+      "capacity": 4500,
+      "averageWaitHours": 18,
+      "resolutionRate": 0.79,
+      "neighborhoods": [
+        {"name": "Sé", "demand": 920, "capacity": 1000},
+        {"name": "Santo Amaro", "demand": 780, "capacity": 900},
+        {"name": "Itaquera", "demand": 1040, "capacity": 1120}
+      ]
+    },
+    {
+      "id": "assistencia",
+      "name": "Assistência social",
+      "category": "Apoio à população",
+      "demand": 950,
+      "previousDemand": 820,
+      "capacity": 900,
+      "averageWaitHours": 36,
+      "resolutionRate": 0.68,
+      "neighborhoods": [
+        {"name": "Sé", "demand": 210, "capacity": 220},
+        {"name": "Santo Amaro", "demand": 180, "capacity": 200},
+        {"name": "Itaquera", "demand": 240, "capacity": 250}
+      ]
+    }
+  ]
+}
