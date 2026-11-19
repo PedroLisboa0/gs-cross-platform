@@ -121,11 +121,6 @@ Os arquivos `web/sqlite3.wasm` e `web/sqflite_sw.js` são gerados pelo comando `
 flutter analyze
 flutter test
 ```
-
-## Vídeo
-
-Link da demonstração (até 3 minutos): **[preencher após publicar o vídeo]**
-
 ## Licença
 
 Projeto acadêmico desenvolvido para a FIAP — Global Solution 2026.2. Os dados incluídos são sintéticos e destinados exclusivamente à demonstração.
