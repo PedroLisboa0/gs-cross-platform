@@ -124,6 +124,10 @@ flutter analyze
 flutter test
 ```
 
+## Vídeo
+
+[Assista à demonstração do Território Vivo no YouTube](https://youtu.be/f3vpSwsq008)
+
 ## Licença
 
 Projeto acadêmico desenvolvido para a FIAP — Global Solution 2026.2. Os dados incluídos são sintéticos e destinados exclusivamente à demonstração.
