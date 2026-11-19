@@ -1,0 +1,6 @@
+=== GLOBAL SOLUTION 2026.2 ===
+Disciplina: Cross-Platform Application Development
+Desafio: Territory Predictive Insights
+Integrante 1: Pedro Lisboa | RM: 565722
+Integrante 2: Bruna Marques | RM: 565648
+GitHub: https://github.com/PedroLisboa0/gs-cross-platform

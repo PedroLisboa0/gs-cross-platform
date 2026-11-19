@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import '../models/prediction_alert.dart';
 import '../models/service_metric.dart';
 import '../services/mock_city_service.dart';
+import '../services/notification_service.dart';
 
 class CityProvider extends ChangeNotifier {
   CityProvider({MockCityService? service})
@@ -36,6 +37,7 @@ class CityProvider extends ChangeNotifier {
     notifyListeners();
     try {
       _snapshot = await _service.fetchSnapshot();
+      await NotificationService.instance.showCriticalAlerts(alerts);
     } catch (error) {
       _error = error;
     } finally {

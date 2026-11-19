@@ -6,8 +6,11 @@ import 'package:sqflite_common_ffi_web/sqflite_ffi_web.dart';
 
 import 'providers/city_provider.dart';
 import 'providers/occurrence_provider.dart';
+import 'providers/preferences_provider.dart';
+import 'models/prediction_alert.dart';
 import 'screens/app_shell.dart';
 import 'services/local_database.dart';
+import 'services/notification_service.dart';
 import 'theme/app_theme.dart';
 
 Future<void> main() async {
@@ -15,7 +18,30 @@ Future<void> main() async {
   if (kIsWeb) {
     databaseFactory = databaseFactoryFfiWeb;
   }
+  await NotificationService.instance.initialize(
+    onServiceIdSelected: _openAlertByServiceId,
+  );
   runApp(const AppBootstrap());
+}
+
+final _navigatorKey = GlobalKey<NavigatorState>();
+
+void _openAlertByServiceId(String serviceId) {
+  final context = _navigatorKey.currentContext;
+  if (context == null) return;
+  final city = context.read<CityProvider>();
+  PredictionAlert? alert;
+  for (final candidate in city.alerts) {
+    if (candidate.serviceId == serviceId) {
+      alert = candidate;
+      break;
+    }
+  }
+  if (alert == null) {
+    _navigatorKey.currentState?.pushNamed('/alerts');
+  } else {
+    _navigatorKey.currentState?.pushNamed('/alert-detail', arguments: alert);
+  }
 }
 
 class AppBootstrap extends StatefulWidget {
@@ -92,6 +118,9 @@ class _AppBootstrapState extends State<AppBootstrap> {
             ChangeNotifierProvider(
               create: (_) => OccurrenceProvider(database)..load(),
             ),
+            ChangeNotifierProvider(
+              create: (_) => PreferencesProvider()..load(),
+            ),
           ],
           child: const TerritorioVivoApp(),
         );
@@ -105,10 +134,17 @@ class TerritorioVivoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final preferences = context.watch<PreferencesProvider>();
     return MaterialApp(
+      navigatorKey: _navigatorKey,
       title: 'Território Vivo',
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.light,
+      theme: preferences.appearanceMode == AppearanceMode.highContrast
+          ? AppTheme.highContrast
+          : AppTheme.light,
+      darkTheme: AppTheme.dark,
+      highContrastTheme: AppTheme.highContrast,
+      themeMode: preferences.themeMode,
       initialRoute: '/',
       onGenerateRoute: AppShell.onGenerateRoute,
     );

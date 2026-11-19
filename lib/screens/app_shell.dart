@@ -1,6 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../models/prediction_alert.dart';
+import '../providers/preferences_provider.dart';
+import 'package:provider/provider.dart';
 import '../theme/app_theme.dart';
 import 'alert_screens.dart';
 import 'alert_detail_screen.dart';
@@ -135,6 +138,12 @@ class _AppShellState extends State<AppShell> {
                   'São Paulo, SP',
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
+                const SizedBox(width: 8),
+                IconButton(
+                  tooltip: 'Aparência e notificações',
+                  icon: const Icon(Icons.tune_rounded),
+                  onPressed: () => _openPreferences(context),
+                ),
               ],
             ),
           ),
@@ -145,7 +154,7 @@ class _AppShellState extends State<AppShell> {
                   selectedIndex: _selectedIndex,
                   onDestinationSelected: _selectDestination,
                   labelType: NavigationRailLabelType.all,
-                  backgroundColor: Colors.white,
+                  backgroundColor: Theme.of(context).colorScheme.surface,
                   destinations: [
                     for (final destination in _destinations)
                       NavigationRailDestination(
@@ -172,6 +181,91 @@ class _AppShellState extends State<AppShell> {
                       ),
                   ],
                 ),
+        );
+      },
+    );
+  }
+
+  Future<void> _openPreferences(BuildContext context) async {
+    await showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      builder: (sheetContext) {
+        return Consumer<PreferencesProvider>(
+          builder: (context, preferences, _) {
+            return SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(20, 18, 20, 24),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Preferências',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    const SizedBox(height: 18),
+                    const Text('Aparência'),
+                    const SizedBox(height: 8),
+                    SegmentedButton<AppearanceMode>(
+                      segments: const [
+                        ButtonSegment(
+                          value: AppearanceMode.light,
+                          label: Text('Claro'),
+                          icon: Icon(Icons.light_mode_outlined),
+                        ),
+                        ButtonSegment(
+                          value: AppearanceMode.dark,
+                          label: Text('Escuro'),
+                          icon: Icon(Icons.dark_mode_outlined),
+                        ),
+                        ButtonSegment(
+                          value: AppearanceMode.highContrast,
+                          label: Text('Alto contraste'),
+                          icon: Icon(Icons.contrast_rounded),
+                        ),
+                      ],
+                      selected: {preferences.appearanceMode},
+                      onSelectionChanged: (selected) {
+                        preferences.setAppearanceMode(selected.first);
+                      },
+                    ),
+                    const SizedBox(height: 18),
+                    SwitchListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: const Text('Alertas críticos'),
+                      subtitle: const Text(
+                        'Notificações locais para sinais críticos.',
+                      ),
+                      value: preferences.notificationsEnabled,
+                      onChanged: kIsWeb
+                          ? null
+                          : (enabled) async {
+                              final granted =
+                                  await preferences.setNotificationsEnabled(
+                                enabled,
+                              );
+                              if (!granted && enabled && context.mounted) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                      'Permissão de notificações não concedida.',
+                                    ),
+                                  ),
+                                );
+                              }
+                            },
+                    ),
+                    if (kIsWeb)
+                      const Text(
+                        'Notificações locais estão disponíveis no Android.',
+                        style: TextStyle(fontWeight: FontWeight.w600),
+                      ),
+                  ],
+                ),
+              ),
+            );
+          },
         );
       },
     );

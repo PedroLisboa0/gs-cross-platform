@@ -19,8 +19,6 @@ O protótipo usa somente dados sintéticos. Não representa a operação nem os 
 
 ## Demonstração visual
 
-Salve uma captura atualizada de cada tela em `assets/screenshots/`, usando os nomes abaixo.
-
 | Tela | Captura |
 |---|---|
 | Visão geral | ![Visão geral](assets/screenshots/01-visao-geral.png) |
@@ -42,6 +40,8 @@ Salve uma captura atualizada de cada tela em `assets/screenshots/`, usando os no
 - [x] Layout responsivo com navegação inferior em telas estreitas e lateral em telas largas.
 - [x] O aviso informa que a análise apoia, mas não substitui, a decisão humana.
 - [x] Roda sem conexão depois de instalado: os indicadores são fornecidos por um JSON local e ocorrências ficam no dispositivo.
+- [x] Tema claro, escuro e de alto contraste, com preferência persistida no dispositivo.
+- [x] Notificações locais opcionais para alertas críticos no Android, sem notificações repetidas.
 
 ## Dados e alertas
 
@@ -68,6 +68,8 @@ O app usa componentes nativos do Flutter, rótulos e descrições semânticas em
 - **SQLite (`sqflite`):** persistência local das ocorrências no Android.
 - **SQLite WASM (`sqflite_common_ffi_web`):** persistência no navegador, armazenada em IndexedDB.
 - **JSON local e `MockCityService`:** fonte sintética simulada, sem dependência de rede.
+- **SharedPreferences:** persistência das preferências de tema e notificações.
+- **Flutter Local Notifications:** notificações locais opcionais no Android.
 - **Material 3:** componentes e identidade visual consistentes e adaptáveis.
 
 ## Como executar
@@ -121,6 +123,7 @@ Os arquivos `web/sqlite3.wasm` e `web/sqflite_sw.js` são gerados pelo comando `
 flutter analyze
 flutter test
 ```
+
 ## Licença
 
 Projeto acadêmico desenvolvido para a FIAP — Global Solution 2026.2. Os dados incluídos são sintéticos e destinados exclusivamente à demonstração.
